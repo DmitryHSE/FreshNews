@@ -89,6 +89,7 @@ extension ViewController: UICollectionViewDelegate {
         print(tabs[indexPath.item].rawValue)
         title = tabs[indexPath.item].title
         fetchArticles(category: tabs[indexPath.item].rawValue)
+        scrollToTop()
         updateDepartmentSelection()
     }
 }
@@ -156,5 +157,23 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let url = articles[indexPath.row].url {
+            UIApplication.shared.open(url)
+        }
+    }
 }
 
+//MARK: - Table view configures
+
+extension ViewController {
+    
+    private func scrollToTop() {
+            let topRow = IndexPath(row: 0,
+                                   section: 0)
+            mainView.newsTableView.scrollToRow(at: topRow,
+                                       at: .top,
+                                       animated: true)
+        }
+}
