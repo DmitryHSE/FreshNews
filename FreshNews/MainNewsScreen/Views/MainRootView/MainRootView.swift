@@ -10,6 +10,7 @@ import UIKit
 final class MainRootView: BaseView {
     
     var topTabsCollectionView = TabsCollectionView()
+    lazy var newsTableView = NewsTableView()
     private let separatorLineUnderTabs = UIView()
     
     override func configureAppearance() {
@@ -32,10 +33,10 @@ final class MainRootView: BaseView {
             separatorLineUnderTabs.trailingAnchor.constraint(equalTo: trailingAnchor),
             separatorLineUnderTabs.heightAnchor.constraint(equalToConstant: Constants.separatorHeight),
             
-//            userTableView.topAnchor.constraint(equalTo: separatorLineUnderTabs.bottomAnchor),
-//            userTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            userTableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            userTableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            newsTableView.topAnchor.constraint(equalTo: separatorLineUnderTabs.bottomAnchor),
+            newsTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            newsTableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            newsTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
             
         ])
     }
@@ -49,7 +50,7 @@ private extension MainRootView {
     
     func addSubView() {
         
-        [//userTableView,
+        [newsTableView,
          separatorLineUnderTabs,
          topTabsCollectionView,
          //searchErrorView,

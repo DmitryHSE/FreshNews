@@ -9,31 +9,64 @@ import UIKit
 
 class ViewController: BaseViewController<MainRootView> {
     
+    private let client = NewsApi()
+    
+    private var viewModel = ViewModel()
     private lazy var model = MainModel()
     private lazy var tabs = NewsSection.allCases
+    private var articles = [Article]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewAppearance()
         setupTopTabs()
-        model.selectedSection = .Business
+        setupTableView()
         setupNavigationBar()
-        
+        bindController()
+    }
+}
+
+
+extension ViewController {
+    func bindController() {
+        viewModel.articlesArrayStatus.bind { array in
+            self.articles = array
+            DispatchQueue.main.async {
+                self.mainView.newsTableView.reloadData()
+            }
+        }
     }
 }
 
 extension ViewController {
     
+    private func fetchArticles(category: String) {
+        viewModel.fetchArticles(category: category)
+    }
+    
     private func setupViewAppearance() {
+        fetchArticles(category: NewsCategory.general.rawValue)
         view.backgroundColor = .white
     }
     
     private func setupNavigationBar() {
         title = model.selectedSection?.rawValue
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Bradley Hand", size: 30)!]
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
+        if #available(iOS 15.0, *) {
+            let navigationBarAppearance = UINavigationBarAppearance()
+            navigationBarAppearance.configureWithDefaultBackground()
+            navigationBarAppearance.backgroundColor = .white
+            UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+            UINavigationBar.appearance().compactAppearance = navigationBarAppearance
+            UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+        }
     }
     
     private func setupTopTabs() {
+        model.selectedSection = .general
         mainView.topTabsCollectionView.delegate = self
         mainView.topTabsCollectionView.dataSource = self
         mainView.topTabsCollectionView.showsHorizontalScrollIndicator = false
@@ -41,6 +74,14 @@ extension ViewController {
             TabsCollectionViewCell.self,
             forCellWithReuseIdentifier: TabsCollectionViewCell.identifier
         )
+    }
+    
+   private func setupTableView() {
+        mainView.newsTableView.separatorColor = .clear
+        mainView.newsTableView.delegate = self
+        mainView.newsTableView.dataSource = self
+        mainView.newsTableView.register(NewsCell.self,
+                                        forCellReuseIdentifier: NewsCell.identifier)
     }
 }
 
@@ -58,10 +99,9 @@ extension ViewController: UICollectionViewDelegate {
             model.selectedSection = tabs[indexPath.item]
         }
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        
-        // mainView.TableView.reloadData()
-        print(tabs[indexPath.item])
+        print(tabs[indexPath.item].rawValue)
         title = tabs[indexPath.item].rawValue
+        fetchArticles(category: tabs[indexPath.item].rawValue)
         updateDepartmentSelection()
     }
 }
@@ -112,5 +152,21 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+//MARK: - Tablewview datasource and delegate
 
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        articles.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.identifier) as! NewsCell
+
+        let article = articles[indexPath.row]
+        cell.load(article: article, downloader: ImageDownloader.shared)
+
+        return cell
+    }
+}
 
