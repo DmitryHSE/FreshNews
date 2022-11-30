@@ -27,7 +27,7 @@
 		9F578D812937B08700FC58C7 /* NewsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F578D802937B08700FC58C7 /* NewsTableView.swift */; };
 		9F578D832937B1F500FC58C7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F578D822937B1F500FC58C7 /* TableViewCell.swift */; };
 		9F578D852937B2D100FC58C7 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F578D842937B2D100FC58C7 /* BaseTableViewCell.swift */; };
-		9F578D872937B30B00FC58C7 /* ImageDowvloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F578D862937B30B00FC58C7 /* ImageDowvloader.swift */; };
+		9F578D872937B30B00FC58C7 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F578D862937B30B00FC58C7 /* ImageDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +53,7 @@
 		9F578D802937B08700FC58C7 /* NewsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableView.swift; sourceTree = "<group>"; };
 		9F578D822937B1F500FC58C7 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9F578D842937B2D100FC58C7 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
-		9F578D862937B30B00FC58C7 /* ImageDowvloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDowvloader.swift; sourceTree = "<group>"; };
+		9F578D862937B30B00FC58C7 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +146,7 @@
 			children = (
 				9F578D772937935100FC58C7 /* NewsAPI.swift */,
 				9F578D79293793B500FC58C7 /* ParsingModel.swift */,
-				9F578D862937B30B00FC58C7 /* ImageDowvloader.swift */,
+				9F578D862937B30B00FC58C7 /* ImageDownloader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -294,7 +294,7 @@
 				9F578D47293774A600FC58C7 /* SceneDelegate.swift in Sources */,
 				9F578D65293779D600FC58C7 /* BaseView.swift in Sources */,
 				9F578D832937B1F500FC58C7 /* TableViewCell.swift in Sources */,
-				9F578D872937B30B00FC58C7 /* ImageDowvloader.swift in Sources */,
+				9F578D872937B30B00FC58C7 /* ImageDownloader.swift in Sources */,
 				9F578D812937B08700FC58C7 /* NewsTableView.swift in Sources */,
 				9F578D782937935100FC58C7 /* NewsAPI.swift in Sources */,
 			);

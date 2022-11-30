@@ -9,8 +9,6 @@ import UIKit
 
 class ViewController: BaseViewController<MainRootView> {
     
-    private let client = NewsApi()
-    
     private var viewModel = ViewModel()
     private lazy var model = MainModel()
     private lazy var tabs = NewsSection.allCases
@@ -50,19 +48,10 @@ extension ViewController {
     }
     
     private func setupNavigationBar() {
-        title = model.selectedSection?.rawValue
+        title = model.selectedSection?.title
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Bradley Hand", size: 30)!]
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
-        
-        if #available(iOS 15.0, *) {
-            let navigationBarAppearance = UINavigationBarAppearance()
-            navigationBarAppearance.configureWithDefaultBackground()
-            navigationBarAppearance.backgroundColor = .white
-            UINavigationBar.appearance().standardAppearance = navigationBarAppearance
-            UINavigationBar.appearance().compactAppearance = navigationBarAppearance
-            UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
-        }
     }
     
     private func setupTopTabs() {
@@ -91,16 +80,14 @@ extension ViewController {
 extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         if model.selectedSection == tabs[indexPath.item] {
             model.selectedSection = nil
-            
         } else {
             model.selectedSection = tabs[indexPath.item]
         }
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         print(tabs[indexPath.item].rawValue)
-        title = tabs[indexPath.item].rawValue
+        title = tabs[indexPath.item].title
         fetchArticles(category: tabs[indexPath.item].rawValue)
         updateDepartmentSelection()
     }
@@ -109,6 +96,7 @@ extension ViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDataSource
 
 extension ViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tabs.count
     }

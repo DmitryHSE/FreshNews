@@ -44,18 +44,9 @@ extension UIColor {
 enum Colors {
     static let violet = UIColor(hex: "#6534FF") ?? .systemGreen
     static let separator = UIColor(hex: "#C3C3C6") ?? .systemGreen
-    static let profileBackground = UIColor(hex: "#F7F7F8") ?? .systemGreen
-    static let skeleton = UIColor(hex: "#F3F3F6") ?? .systemGreen
-    static let networkError = UIColor(hex: "#F44336") ?? .systemGreen
-    
-    enum SearchBar {
-        static let secondary = UIColor(hex: "#F7F7F8") ?? .systemGreen
-        static let placeholder = UIColor(hex: "#C3C3C6") ?? .systemGreen
-    }
     
     enum Text {
         static let active = UIColor(hex: "#050510") ?? .systemGreen
         static let inActive = UIColor(hex: "#97979B") ?? .systemGreen
-        static let secondary = UIColor(hex: "#55555C") ?? .systemGreen
     }
 }
