@@ -24,6 +24,7 @@ class ViewController: BaseViewController<MainRootView> {
         setupTopTabs()
         setupTableView()
         setupNavigationBar()
+        setupActivityIndicator()
         bindController()
     }
 }
@@ -36,6 +37,8 @@ extension ViewController {
             self.articles = array
             DispatchQueue.main.async {
                 self.mainView.newsTableView.reloadData()
+                self.mainView.activityIndicator.stopAnimating()
+                self.mainView.newsTableView.isHidden = false
             }
         }
     }
@@ -48,6 +51,14 @@ extension ViewController {
     private func setupViewAppearance() {
         fetchArticles(category: NewsCategory.general.rawValue)
         view.backgroundColor = .white
+    }
+    
+    private func setupActivityIndicator() {
+        mainView.activityIndicator.hidesWhenStopped = true
+        mainView.activityIndicator.style = .medium
+        mainView.activityIndicator.color = .systemGray
+        mainView.activityIndicator.isHidden = false
+        mainView.activityIndicator.startAnimating()
     }
     
     private func setupNavigationBar() {
@@ -100,6 +111,7 @@ extension ViewController: UICollectionViewDelegate {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         print(tabs[indexPath.item].rawValue)
         title = tabs[indexPath.item].title
+        hideTableViewAndRunActivityIndicactor()
         fetchArticles(category: tabs[indexPath.item].rawValue)
         scrollToTop()
         updateDepartmentSelection()
@@ -186,4 +198,11 @@ extension ViewController {
                                        at: .top,
                                        animated: true)
         }
+    
+    private func hideTableViewAndRunActivityIndicactor() {
+        mainView.newsTableView.isHidden = true
+        mainView.activityIndicator.isHidden = false
+        mainView.activityIndicator.startAnimating()
+    }
 }
+

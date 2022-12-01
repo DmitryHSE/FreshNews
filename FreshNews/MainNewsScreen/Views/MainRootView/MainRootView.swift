@@ -11,9 +11,11 @@ final class MainRootView: BaseView {
     
     lazy var topTabsCollectionView = TabsCollectionView()
     lazy var newsTableView = NewsTableView()
+    lazy var activityIndicator = UIActivityIndicatorView()
     private let separatorLineUnderTabs = UIView()
     
     override func configureAppearance() {
+        newsTableView.isHidden = true
         backgroundColor = .white
         separatorLineUnderTabs.backgroundColor = Colors.separator
        
@@ -21,6 +23,7 @@ final class MainRootView: BaseView {
     
     override func configureUI() {
         addSubView()
+        //setupActivityIndicator()
         
         NSLayoutConstraint.activate([
             topTabsCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
@@ -36,7 +39,10 @@ final class MainRootView: BaseView {
             newsTableView.topAnchor.constraint(equalTo: separatorLineUnderTabs.bottomAnchor),
             newsTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             newsTableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            newsTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            newsTableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
             
         ])
     }
@@ -49,8 +55,13 @@ final class MainRootView: BaseView {
 private extension MainRootView {
     
     func addSubView() {
-        [newsTableView, separatorLineUnderTabs, topTabsCollectionView].forEach { addView($0) }
+        [newsTableView, separatorLineUnderTabs, topTabsCollectionView,activityIndicator].forEach { addView($0) }
+        
     }
+    
+    
+    //MARK: - Activity indicator
+    
 }
 
 // MARK: - Constants
