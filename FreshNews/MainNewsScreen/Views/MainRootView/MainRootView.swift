@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CountryMenuDelegateProtocol: AnyObject {
-    func recieveCountryName(country: String)
+    func recieveCountryName(recievedCode: String)
 }
 
 final class MainRootView: BaseView {
@@ -21,9 +21,10 @@ final class MainRootView: BaseView {
     
     var countryMenu: UIMenu {
         let menuActions = Country.allCases.map({ (item) -> UIAction in
+            let code = item.code
             let name = item.rawValue
             return UIAction(title: name, image: nil) { (_) in
-                self.countryMenuDelegate?.recieveCountryName(country: name)
+                self.countryMenuDelegate?.recieveCountryName(recievedCode: code)
             }
         })
         return UIMenu(title: "Change Country", children: menuActions)

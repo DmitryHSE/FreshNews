@@ -15,6 +15,8 @@ class ViewController: BaseViewController<MainRootView> {
     private lazy var model = MainModel()
     private lazy var tabs = NewsSection.allCases
     private var articles = [Article]()
+    private var countryCode = Country.USA.code
+    private var selectedCollectionViewItemIndex = Int()
     
     //MARK: - ViewDidLoad
 
@@ -34,11 +36,13 @@ class ViewController: BaseViewController<MainRootView> {
 //MARK: - CountryMenuDelegateProtocol
 
 extension ViewController: CountryMenuDelegateProtocol {
-    func recieveCountryName(country: String) {
-        print(country)
+    func recieveCountryName(recievedCode: String) {
+        countryCode = recievedCode
+        fetchArticles(category: tabs[selectedCollectionViewItemIndex].titleUs, coutry: countryCode)
+        DispatchQueue.main.async {
+            self.mainView.newsTableView.reloadData()
+        }
     }
-    
-    
 }
 
 //MARK: - MVVM binder
@@ -68,7 +72,7 @@ extension ViewController {
     }
     
     private func setupViewAppearance() {
-        fetchArticles(category: NewsSection.general.rawValue)
+        fetchArticles(category: NewsSection.general.rawValue, coutry: countryCode)
         view.backgroundColor = .white
     }
     
@@ -111,8 +115,8 @@ extension ViewController {
 
 extension ViewController {
     
-    private func fetchArticles(category: String) {
-        viewModel.fetchArticles(category: category)
+    private func fetchArticles(category: String, coutry: String) {
+        viewModel.fetchArticles(category: category,coutry: coutry)
     }
 }
 
@@ -127,10 +131,11 @@ extension ViewController: UICollectionViewDelegate {
             model.selectedSection = tabs[indexPath.item]
         }
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        selectedCollectionViewItemIndex = indexPath.item
         print(tabs[indexPath.item].rawValue)
         title = tabs[indexPath.item].titleUs
         hideTableViewAndRunActivityIndicactor()
-        fetchArticles(category: tabs[indexPath.item].rawValue)
+        fetchArticles(category: tabs[indexPath.item].rawValue, coutry: countryCode)
         scrollToTop()
         updateDepartmentSelection()
     }
@@ -210,12 +215,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 extension ViewController {
     
     private func scrollToTop() {
+        if !articles.isEmpty {
             let topRow = IndexPath(row: 0,
                                    section: 0)
             mainView.newsTableView.scrollToRow(at: topRow,
-                                       at: .top,
-                                       animated: true)
+                                               at: .top,
+                                               animated: true)
         }
+        
+    }
     
     private func hideTableViewAndRunActivityIndicactor() {
         mainView.newsTableView.isHidden = true
