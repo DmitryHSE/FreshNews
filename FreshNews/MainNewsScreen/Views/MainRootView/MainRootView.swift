@@ -9,7 +9,7 @@ import UIKit
 
 final class MainRootView: BaseView {
     
-    var topTabsCollectionView = TabsCollectionView()
+    lazy var topTabsCollectionView = TabsCollectionView()
     lazy var newsTableView = NewsTableView()
     private let separatorLineUnderTabs = UIView()
     
@@ -58,5 +58,4 @@ private extension MainRootView {
 private enum Constants {
     static let tabsHeight: CGFloat = 36 //36
     static let separatorHeight: CGFloat = 0.33
-    static let refreshSubViewFrame = CGRect(x: UIScreen.main.bounds.width / 2.1, y: 20, width: 20, height: 20)
 }

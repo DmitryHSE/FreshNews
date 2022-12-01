@@ -63,8 +63,7 @@ private extension NewsApi {
 extension URL {
 
     func get<T: Codable>(completion: @escaping (Result<T, ApiError>) -> Void) {
-        //print("get: \(self.absoluteString)")
-
+        
         let session = URLSession.shared
         let task = session.dataTask(with: self) { data, _, error in
             if let _ = error {

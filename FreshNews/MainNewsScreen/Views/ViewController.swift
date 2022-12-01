@@ -9,10 +9,14 @@ import UIKit
 
 class ViewController: BaseViewController<MainRootView> {
     
+    //MARK: - Properties
+    
     private var viewModel = ViewModel()
     private lazy var model = MainModel()
     private lazy var tabs = NewsSection.allCases
     private var articles = [Article]()
+    
+    //MARK: - ViewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +28,7 @@ class ViewController: BaseViewController<MainRootView> {
     }
 }
 
+//MARK: - MVVC binder
 
 extension ViewController {
     func bindController() {
@@ -36,11 +41,9 @@ extension ViewController {
     }
 }
 
+//MARK: - UI elements setup
+
 extension ViewController {
-    
-    private func fetchArticles(category: String) {
-        viewModel.fetchArticles(category: category)
-    }
     
     private func setupViewAppearance() {
         fetchArticles(category: NewsCategory.general.rawValue)
@@ -71,6 +74,15 @@ extension ViewController {
         mainView.newsTableView.dataSource = self
         mainView.newsTableView.register(NewsCell.self,
                                         forCellReuseIdentifier: NewsCell.identifier)
+    }
+}
+
+//MARK: - Download articles
+
+extension ViewController {
+    
+    private func fetchArticles(category: String) {
+        viewModel.fetchArticles(category: category)
     }
 }
 
@@ -123,8 +135,6 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     
-    // это размер ячейки
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let label = UILabel(frame: CGRect.zero)
@@ -165,7 +175,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: - Tableview configures
+//MARK: - Tableview animation configures
 
 extension ViewController {
     
