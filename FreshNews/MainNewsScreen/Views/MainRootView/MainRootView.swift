@@ -23,7 +23,6 @@ final class MainRootView: BaseView {
     
     override func configureUI() {
         addSubView()
-        //setupActivityIndicator()
         
         NSLayoutConstraint.activate([
             topTabsCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
@@ -55,13 +54,8 @@ final class MainRootView: BaseView {
 private extension MainRootView {
     
     func addSubView() {
-        [newsTableView, separatorLineUnderTabs, topTabsCollectionView,activityIndicator].forEach { addView($0) }
-        
+        [newsTableView, separatorLineUnderTabs, topTabsCollectionView, activityIndicator].forEach { addView($0) }
     }
-    
-    
-    //MARK: - Activity indicator
-    
 }
 
 // MARK: - Constants
