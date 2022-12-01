@@ -8,7 +8,7 @@
 * iOS 13+
 * Swift 5
 * UIKit full programmatically
-* MVVC (Observer)
+* MVVM (Observer)
 * Нет внешних зависимостей
 * API: https://newsapi.org
 
