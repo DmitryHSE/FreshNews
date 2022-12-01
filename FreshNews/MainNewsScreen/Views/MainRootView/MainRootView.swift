@@ -7,12 +7,27 @@
 
 import UIKit
 
+protocol CountryMenuDelegateProtocol: AnyObject {
+    func recieveCountryName(country: String)
+}
+
 final class MainRootView: BaseView {
     
+    var countryMenuDelegate: CountryMenuDelegateProtocol?
     lazy var topTabsCollectionView = TabsCollectionView()
     lazy var newsTableView = NewsTableView()
     lazy var activityIndicator = UIActivityIndicatorView()
     private let separatorLineUnderTabs = UIView()
+    
+    var countryMenu: UIMenu {
+        let menuActions = Country.allCases.map({ (item) -> UIAction in
+            let name = item.rawValue
+            return UIAction(title: name, image: nil) { (_) in
+                self.countryMenuDelegate?.recieveCountryName(country: name)
+            }
+        })
+        return UIMenu(title: "Change Country", children: menuActions)
+    }
     
     override func configureAppearance() {
         newsTableView.isHidden = true
@@ -46,8 +61,6 @@ final class MainRootView: BaseView {
         ])
     }
 }
-
-
 
 // MARK: - Private  Methods
 

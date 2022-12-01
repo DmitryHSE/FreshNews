@@ -19,6 +19,7 @@ class ViewController: BaseViewController<MainRootView> {
     //MARK: - ViewDidLoad
 
     override func viewDidLoad() {
+        mainView.countryMenuDelegate = self
         super.viewDidLoad()
         setupViewAppearance()
         setupTopTabs()
@@ -26,10 +27,21 @@ class ViewController: BaseViewController<MainRootView> {
         setupNavigationBar()
         setupActivityIndicator()
         bindController()
+        setupNavBarRightButton(menu: mainView.countryMenu)
     }
 }
 
-//MARK: - MVVC binder
+//MARK: - CountryMenuDelegateProtocol
+
+extension ViewController: CountryMenuDelegateProtocol {
+    func recieveCountryName(country: String) {
+        print(country)
+    }
+    
+    
+}
+
+//MARK: - MVVM binder
 
 extension ViewController {
     func bindController() {
@@ -48,8 +60,15 @@ extension ViewController {
 
 extension ViewController {
     
+    private func setupNavBarRightButton(menu: UIMenu) {
+        let buttonImage = UIImage(systemName: "globe")
+        let categoryBarButton = UIBarButtonItem(title: nil, image: buttonImage, primaryAction: nil, menu: menu)
+        categoryBarButton.tintColor = .systemGray
+        navigationItem.rightBarButtonItem = categoryBarButton
+    }
+    
     private func setupViewAppearance() {
-        fetchArticles(category: NewsCategory.general.rawValue)
+        fetchArticles(category: NewsSection.general.rawValue)
         view.backgroundColor = .white
     }
     
@@ -62,7 +81,7 @@ extension ViewController {
     }
     
     private func setupNavigationBar() {
-        title = model.selectedSection?.title
+        title = model.selectedSection?.titleUs
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Bradley Hand", size: 30)!]
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -97,7 +116,6 @@ extension ViewController {
     }
 }
 
-
 // MARK: - UICollectionViewDelegate
 
 extension ViewController: UICollectionViewDelegate {
@@ -110,7 +128,7 @@ extension ViewController: UICollectionViewDelegate {
         }
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         print(tabs[indexPath.item].rawValue)
-        title = tabs[indexPath.item].title
+        title = tabs[indexPath.item].titleUs
         hideTableViewAndRunActivityIndicactor()
         fetchArticles(category: tabs[indexPath.item].rawValue)
         scrollToTop()

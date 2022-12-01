@@ -28,6 +28,7 @@
 		9F578D832937B1F500FC58C7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F578D822937B1F500FC58C7 /* TableViewCell.swift */; };
 		9F578D852937B2D100FC58C7 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F578D842937B2D100FC58C7 /* BaseTableViewCell.swift */; };
 		9F578D872937B30B00FC58C7 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F578D862937B30B00FC58C7 /* ImageDownloader.swift */; };
+		9F578DB8293919C000FC58C7 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F578DB7293919C000FC58C7 /* CountryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		9F578D822937B1F500FC58C7 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9F578D842937B2D100FC58C7 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		9F578D862937B30B00FC58C7 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		9F578DB7293919C000FC58C7 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				9F578D742937927F00FC58C7 /* MainModel.swift */,
+				9F578DB7293919C000FC58C7 /* CountryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				9F578D45293774A600FC58C7 /* AppDelegate.swift in Sources */,
 				9F578D6A29377A6200FC58C7 /* MainRootView.swift in Sources */,
 				9F578D47293774A600FC58C7 /* SceneDelegate.swift in Sources */,
+				9F578DB8293919C000FC58C7 /* CountryModel.swift in Sources */,
 				9F578D65293779D600FC58C7 /* BaseView.swift in Sources */,
 				9F578D832937B1F500FC58C7 /* TableViewCell.swift in Sources */,
 				9F578D872937B30B00FC58C7 /* ImageDownloader.swift in Sources */,

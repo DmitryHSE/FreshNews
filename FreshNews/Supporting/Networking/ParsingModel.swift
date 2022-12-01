@@ -61,12 +61,12 @@ extension Article {
     }
 }
 
-enum NewsCategory: String, CaseIterable, Codable {
-    case general
-    case business
-    case entertainment
-    case health
-    case science
-    case sports
-    case technology
-}
+//enum NewsCategory: String, CaseIterable, Codable {
+//    case general
+//    case business
+//    case entertainment
+//    case health
+//    case science
+//    case sports
+//    case technology
+//}
