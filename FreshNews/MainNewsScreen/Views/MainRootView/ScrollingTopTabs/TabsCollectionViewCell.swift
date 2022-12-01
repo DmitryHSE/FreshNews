@@ -66,13 +66,11 @@ extension TabsCollectionViewCell {
         if isSelected {
             bottomBorderView.isHidden = false
             label.textColor = Colors.Text.active
-           // label.font = Constants.Text.font
             label.font = UIFont(name: "Avenir Next", size: 18)
         } else {
             bottomBorderView.isHidden = true
             label.textColor = Colors.Text.inActive
             label.font = UIFont(name: "Avenir Next", size: 18)
-          //  label.font = Constants.Text.selectedFont
         }
     }
     
@@ -88,7 +86,7 @@ extension TabsCollectionViewCell {
 private extension TabsCollectionViewCell {
     
     func configureBorder() {
-        bottomBorderView.backgroundColor = Colors.violet
+        bottomBorderView.backgroundColor = Colors.softBlue
         bottomBorderView.isHidden = false
     }
 }

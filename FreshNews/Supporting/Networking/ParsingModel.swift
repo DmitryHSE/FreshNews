@@ -29,10 +29,9 @@ struct Source: Codable {
 extension Article {
     var ago: String? {
         guard let date = publishedAt else { return nil }
-
         let rdf = RelativeDateTimeFormatter()
-
         return rdf.localizedString(for: date, relativeTo: Date())
+        
     }
 
     var urlDisplay: String? {
@@ -70,23 +69,4 @@ enum NewsCategory: String, CaseIterable, Codable {
     case science
     case sports
     case technology
-
-//    var title: String {
-//        switch self {
-//        case .general:
-//            return "General"
-//        case .business:
-//            return "Business"
-//        case .entertainment:
-//            return "Entertainment"
-//        case .health:
-//            return "Health"
-//        case .science:
-//            return "Science"
-//        case .sports:
-//            return "Sports"
-//        case .technology:
-//            return "Technology"
-//        }
-//    }
 }

@@ -31,19 +31,16 @@ class BaseCell: UITableViewCell {
         articleImageView.image = nil
         logo.image = nil
     }
-
+    
     func config() {
         self.selectionStyle = .none
-
         summary.numberOfLines = 0
-
         title.numberOfLines = 0
-
         articleImageView.backgroundColor = .secondarySystemBackground
         articleImageView.contentMode = .scaleAspectFill
         articleImageView.clipsToBounds = true
     }
-
+    
     func load(urlString: String?,
               downloader: ImageDownloader,
               size: CGSize? = nil,

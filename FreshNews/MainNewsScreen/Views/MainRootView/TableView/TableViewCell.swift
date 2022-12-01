@@ -9,7 +9,7 @@ import UIKit
 
 class NewsCell: BaseCell {
 
-    static let identifier: String = "TwitterCell"
+    static let identifier: String = "Cell"
     private static let logoSize = CGSize(width: 50, height: 50)
 
     override func config() {
@@ -53,7 +53,7 @@ class NewsCell: BaseCell {
 
     func load(article: Article, downloader: ImageDownloader) {
         title.text = article.titleDisplay
-        source.attributedText = article.twitterAttributedFirstLine
+        source.attributedText = article.attributedFirstLine
 
         load(urlString: article.urlToImage, downloader: downloader)
 
@@ -64,7 +64,7 @@ class NewsCell: BaseCell {
 
 private extension Article {
 
-    var twitterAttributedFirstLine: NSAttributedString {
+    var attributedFirstLine: NSAttributedString {
         guard let name = source?.name else { return NSAttributedString() }
 
         let nameAttribute: [NSAttributedString.Key: Any] = [

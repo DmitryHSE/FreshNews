@@ -42,7 +42,7 @@ extension UIColor {
 }
 
 enum Colors {
-    static let violet = UIColor(hex: "#6534FF") ?? .systemGreen
+    static let softBlue = UIColor(hex: "#0088CC") ?? .systemGreen //#229ED9
     static let separator = UIColor(hex: "#C3C3C6") ?? .systemGreen
     
     enum Text {

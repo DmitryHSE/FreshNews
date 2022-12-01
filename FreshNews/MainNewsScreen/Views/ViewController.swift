@@ -141,7 +141,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-//MARK: - Tablewview datasource and delegate
+//MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -165,7 +165,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: - Table view configures
+//MARK: - Tableview configures
 
 extension ViewController {
     

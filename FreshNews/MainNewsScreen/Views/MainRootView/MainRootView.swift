@@ -49,15 +49,7 @@ final class MainRootView: BaseView {
 private extension MainRootView {
     
     func addSubView() {
-        
-        [newsTableView,
-         separatorLineUnderTabs,
-         topTabsCollectionView,
-         //searchErrorView,
-         //internalErrorView
-        ].forEach { addView($0) }
-        
-       // [grayCircleView, spinnerView].forEach { refreshControl.addView($0) }
+        [newsTableView, separatorLineUnderTabs, topTabsCollectionView].forEach { addView($0) }
     }
 }
 
