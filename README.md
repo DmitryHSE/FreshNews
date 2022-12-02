@@ -19,24 +19,37 @@
         <tr>
             <th>Основной экран</th>
             <th>Переключение табов</th>
+            <th>Переключение страны</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <img width="250" src="Resources/MainScreen1.gif">
+            </td>
+            <td>
+                <img width="250" src="Resources/TapTabs1.gif">
+            </td>
+                        <td>
+                <img width="250" src="Resources/Country1.gif">
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table>
+    <thead>
+        <tr>
             <th>Переход в браузер</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>
-                <img width="250" src="Resources/MainScreen.gif">
-            </td>
-            <td>
-                <img width="250" src="Resources/TapTabs.gif">
-            </td>
-                        <td>
-                <img width="250" src="Resources/Safari.gif">
+                <img width="250" src="Resources/Safari1.gif">
             </td>
         </tr>
     </tbody>
 </table>
-
 <table>
     <thead>
         </tr>
@@ -47,5 +60,6 @@
 
     * При запуске приложения появляется индикатор пока загружаются новости и обновляется таблица
     * При переключении табов загружается новый массив новостей
+    * Возможность переключить страну - источник новостей
     * Картинки кэшируются
     * При тапе на новость открывается барузер по ссылке на источник
