@@ -10,10 +10,10 @@ import UIKit
 class ViewController: BaseViewController<MainRootView> {
     
     //MARK: - Properties
-    
     private var viewModel = ViewModel()
     private lazy var model = MainModel()
     private lazy var tabs = NewsSection.allCases
+    private var category = String()
     private var articles = [Article]()
     private var countryCode = Country.USA.code
     private var selectedCollectionViewItemIndex = Int()
@@ -21,7 +21,6 @@ class ViewController: BaseViewController<MainRootView> {
     //MARK: - ViewDidLoad
 
     override func viewDidLoad() {
-        mainView.countryMenuDelegate = self
         super.viewDidLoad()
         setupViewAppearance()
         setupTopTabs()
@@ -38,9 +37,11 @@ class ViewController: BaseViewController<MainRootView> {
 extension ViewController: CountryMenuDelegateProtocol {
     func recieveCountryName(recievedCode: String) {
         countryCode = recievedCode
-        fetchArticles(category: tabs[selectedCollectionViewItemIndex].titleUs, coutry: countryCode)
+        hideTableViewAndRunActivityIndicactor()
+        fetchArticles(category: tabs[selectedCollectionViewItemIndex].title, coutry: countryCode)
         DispatchQueue.main.async {
             self.mainView.newsTableView.reloadData()
+            self.mainView.topTabsCollectionView.reloadData()
         }
     }
 }
@@ -72,7 +73,9 @@ extension ViewController {
     }
     
     private func setupViewAppearance() {
-        fetchArticles(category: NewsSection.general.rawValue, coutry: countryCode)
+        category = tabs[0].rawValue
+        mainView.countryMenuDelegate = self
+        fetchArticles(category: category, coutry: countryCode)
         view.backgroundColor = .white
     }
     
@@ -85,7 +88,7 @@ extension ViewController {
     }
     
     private func setupNavigationBar() {
-        title = model.selectedSection?.titleUs
+        title = model.selectedSection?.title
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Bradley Hand", size: 30)!]
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -114,7 +117,6 @@ extension ViewController {
 //MARK: - Download articles
 
 extension ViewController {
-    
     private func fetchArticles(category: String, coutry: String) {
         viewModel.fetchArticles(category: category,coutry: coutry)
     }
@@ -133,7 +135,7 @@ extension ViewController: UICollectionViewDelegate {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         selectedCollectionViewItemIndex = indexPath.item
         print(tabs[indexPath.item].rawValue)
-        title = tabs[indexPath.item].titleUs
+        title = tabs[indexPath.item].title
         hideTableViewAndRunActivityIndicactor()
         fetchArticles(category: tabs[indexPath.item].rawValue, coutry: countryCode)
         scrollToTop()
@@ -159,9 +161,7 @@ extension ViewController: UICollectionViewDataSource {
         }
         
         cell.setModel(tabs[indexPath.item])
-        
         cell.setCellSelected(tabs[indexPath.item] == model.selectedSection)
-        
         return cell
     }
 }

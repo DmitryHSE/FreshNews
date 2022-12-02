@@ -76,7 +76,7 @@ extension TabsCollectionViewCell {
     
     func setModel(_ category: NewsSection) {
         self.model = category
-        label.text = category.titleUs
+        label.text = category.title
         label.textColor = Colors.Text.inActive
     }
 }

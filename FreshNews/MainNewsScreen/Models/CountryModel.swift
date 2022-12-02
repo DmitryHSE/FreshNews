@@ -10,7 +10,9 @@ import Foundation
 enum Country: String {
     case USA
     case Russia
-    case Ukraine
+    case Germany
+    case France
+    case UK
 }
 
 extension Country: CaseIterable {
@@ -20,8 +22,12 @@ extension Country: CaseIterable {
             return "us"
         case .Russia:
             return "ru"
-        case .Ukraine:
-            return "ua"
+        case .Germany:
+            return "de"
+        case .France:
+            return "fr"
+        case .UK:
+            return "gb"
         }
     }
 }
