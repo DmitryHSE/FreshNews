@@ -25,3 +25,4 @@ class BaseView: UIView {
     // Method for adjusting the position of the view on the screen
     func configureUI() { }
 }
+

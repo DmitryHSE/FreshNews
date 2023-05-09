@@ -70,6 +70,7 @@ extension ViewController {
         let categoryBarButton = UIBarButtonItem(title: nil, image: buttonImage, primaryAction: nil, menu: menu)
         categoryBarButton.tintColor = .systemGray
         navigationItem.rightBarButtonItem = categoryBarButton
+        
     }
     
     private func setupViewAppearance() {
